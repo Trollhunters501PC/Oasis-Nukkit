@@ -1,0 +1,12 @@
+name: Oasis-Nukkit
+main: org.CreadoresProgram.Oasis.nukkit.Main
+version: "0.1.0-SNAPSHOT"
+api: ["1.0.0"]
+author: Creadores Program
+load: POSTWORLD
+description: Control your server with AI
+website: "https://github.com/Trollhunters501PC/Oasis-Nukkit"
+softdepend:
+  - JSEngineNK
+loadbefore:
+  - JSEngineNK

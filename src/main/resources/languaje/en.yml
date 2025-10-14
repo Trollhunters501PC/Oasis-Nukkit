@@ -1,0 +1,6 @@
+cargando: "§eLoading..."
+errorPromtIa: "§cError processing the AI prompt. Please try again later."
+nombreComando: ""
+descripcionComando: ""
+usoComando: " <prompt>"
+noPermiso: ""

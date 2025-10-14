@@ -1,0 +1,6 @@
+cargando: "§eCargando..."
+errorPromtIa: "§cError al procesar la solicitud a la IA. Inténtalo de nuevo más tarde."
+nombreComando: ""
+descripcionComando: ""
+usoComando: " <mensaje>"
+noPermiso: ""
