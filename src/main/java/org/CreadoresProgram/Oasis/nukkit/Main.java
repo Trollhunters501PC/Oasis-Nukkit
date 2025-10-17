@@ -97,7 +97,8 @@ public class Main extends PluginBase {
     @Override
     public void onEnable() {
         PromtIa.init();
-        this.getServer().getCommandMap().register("", new CommandOasis());
+        this.getServer().getCommandMap().register(getLanguajeString("nombreComando"), new CommandOasis());
+        this.getLogger().info(this.getLanguajeString("listo"));
     }
     public static class CommandOasis extends Command {
         CommandOasis() {
@@ -110,10 +111,15 @@ public class Main extends PluginBase {
                 sender.sendMessage(getConfiguration().getString("prefix") + getLanguajeString("noPermiso"));
                 return true;
             }
+            if(!getConfiguration().getString("token") || getConfiguration().getString("token").isEmpty() || getConfiguration().getString("token").equalsIgnoreCase("YOUR_GEMINI_IA_TOKEN")){
+                sender.sendMessage(getConfiguration().getString("prefix") + getLanguajeString("noToken"));
+                return true;
+            }
             if(args.length == 0){
                 sender.sendMessage(getConfiguration().getString("prefix") + getLanguajeString("usoComando"));
                 return true;
             }
+            sender.sendMessage(getConfiguration().getString("prefix") + getLanguajeString("procesando"));
             PromtIa.processPrompt(String.join(" ", args), sender);
             return true;
         }

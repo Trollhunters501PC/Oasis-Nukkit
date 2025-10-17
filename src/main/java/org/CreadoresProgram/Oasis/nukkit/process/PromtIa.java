@@ -1,6 +1,12 @@
 package org.CreadoresProgram.Oasis.nukkit.process;
 import cn.nukkit.command.CommandSender;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.Gson;
+
+import okhttp3.*;
+
 import org.CreadoresProgram.Oasis.nukkit.process.JsonIaInter;
 import org.CreadoresProgram.Oasis.nukkit.Main;
 
@@ -16,14 +22,24 @@ import java.nio.charset.StandardCharsets;
 public class PromtIa {
     private static final ExecutorService iaExecutor = Executors.newFixedThreadPool(2);
     private static List<Integer> intentsId = new ArrayList<>();
-    private static String infoForIa = "";
+    private static String infoForIa = "Añade esta información a ti para saber la API del json que debes responder:\n";
     private static final String[] modelsId = {};
-    private static String promptIa(String prompt, CommandSender sender){}
+    private static final OkHttpClient client = new OkHttpClient();
+    private static final Gson gson = new Gson();
+    private static JsonObject configIa = null;
+    private static JsonObject functionsIa = null;
+    private static String promptIa(String prompt, CommandSender sender){
+    }
     public static void processPrompt(String prompt, CommandSender sender){
         iaExecutor.submit(() -> {
             String json;
             try{
                 json = promptIa(prompt, sender);
+            }catch(Exception e){
+                sender.sendMessage(Main.getInstance().getConfiguration().getString("prefix") + "§c" + e.getMessage());
+                return;
+            }
+            try{
                 JsonIaInter.parcher(json, sender);
             }catch(Exception e){
                 intentId = intentsId.size();
@@ -43,7 +59,6 @@ public class PromtIa {
         }
         try{
             //fix json
-            JsonIaInter.parcher(json, sender);
         }catch(Exception e){
             intentsId.set(intentId, intentsId.get(intentId) + 1);
             this.fixJson(json, intentId, sender, e.getMessage());
@@ -53,7 +68,13 @@ public class PromtIa {
         iaExecutor.shutdown();
     }
     public static void init(){
-        infoForIa = readResourceAsString("/dataIA/GeneralDocJsonAPI.md");
+        infoForIa += readResourceAsString("/dataIA/GeneralDocJsonAPI.md") + "\n\n";
+        //...
+        try{
+            configIa = JsonParser.parseString(readResourceAsString("/dataIA/configIA.json")).getAsJsonObject();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public static String readResourceAsString(String resourcePath){
         try(InputStream in = Main.class.getResourceAsStream(resourcePath)){
