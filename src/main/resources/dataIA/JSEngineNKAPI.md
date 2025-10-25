@@ -22,11 +22,11 @@ Credits to the Original Plugin: https://cloudburstmc.org/resources/modloader.108
 # Basic JavaScript API loaded!
 - Global Variables:
 ```javascript
-var server; return getServer();
+var server; return getServer();//Plugin Nukkit
 var plugin; return JSEngineNK Plugin MainClass;
 var global; return JSEngineNK Plugin MainClass;
 var self; return JSEngineNK Plugin MainClass;
-var manager; return FunctionManager Class, Using to create Commands e Loops
+var manager; return FunctionManager Class, Using to create Commands and Loops
 var script; return A class that registers scripts and events
 var logger; return Console Logger Input
 var console; return Console Logger Input
@@ -42,6 +42,7 @@ manager.createCommand("name", "description", "functionUsed");
 
 
 function functionUsed(sender, args){
+    //sender = CommandSender by Nukkit Core
     if(args.length < 1){ // see args exists
         sender.sendMessage('You used incorrect!');
         return;

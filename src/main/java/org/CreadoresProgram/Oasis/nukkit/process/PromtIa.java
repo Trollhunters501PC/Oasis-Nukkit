@@ -30,7 +30,7 @@ public class PromtIa {
     private static JsonObject functionsIa = null;
     private static String promptIa(String prompt, CommandSender sender){
     }
-    public static void processPrompt(String prompt, CommandSender sender){
+    public static void processPrompt(String prompt, final CommandSender sender){
         iaExecutor.submit(() -> {
             String json;
             try{
