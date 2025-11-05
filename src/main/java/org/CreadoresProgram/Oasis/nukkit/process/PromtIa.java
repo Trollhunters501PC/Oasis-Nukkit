@@ -27,7 +27,7 @@ public class PromtIa {
     private static final OkHttpClient client = new OkHttpClient();
     private static final Gson gson = new Gson();
     private static JsonObject configIa = null;
-    private static JsonObject functionsIa = null;
+    private static JsonObject systemIa = null;
     private static String promptIa(String prompt, CommandSender sender){
     }
     public static void processPrompt(String prompt, final CommandSender sender){
@@ -68,10 +68,12 @@ public class PromtIa {
         iaExecutor.shutdown();
     }
     public static void init(){
-        infoForIa += readResourceAsString("/dataIA/GeneralDocJsonAPI.md") + "\n\n";
+        infoForIa += readResourceAsString("/dataIA/GeneralDocJsonAPI.md") + "\n\n" + readResourceAsString("/dataIA/JSEngineNKAPI.md") + "\n\n";
         //...
         try{
             configIa = JsonParser.parseString(readResourceAsString("/dataIA/configIA.json")).getAsJsonObject();
+            systemIa = JsonParser.parseString(readResourceAsString("/dataIA/systemInstruction.json")).getAsJsonObject();
+            systemIa.getAsJsonArray("parts").getAsJsonObject(1).addProperty("text", infoForIa);
         }catch(Exception e){
             e.printStackTrace();
         }

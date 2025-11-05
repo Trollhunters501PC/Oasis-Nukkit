@@ -214,3 +214,20 @@ Added readfully() function to read text files example usage:
 JavaScript:
 
 var test = readFully("absolutePath/archive.txt"); //use the absolute Path of the file!
+
+Polyfills were added:
+
+String:
+includes
+padStart
+padEnd
+
+Array:
+flatMap
+
+Object:
+is
+values
+getOwnPropertyDescriptors
+
+and more!
