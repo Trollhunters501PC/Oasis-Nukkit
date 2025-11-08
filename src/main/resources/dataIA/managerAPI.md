@@ -6,6 +6,6 @@ See the example files for better context
  - manager.createTask(functionName, delay) return create a task with specifications.
  - manager.createLoopTask(functionName, delay) return create a repetitive task with the specifications.
  - manager.cancelTask(id) return cancels a task with the specification.
- - manager.getPlugin(name) return class if there is a plugin by name or null.
+ - manager.getPlugin(name) return Main instance if there is a plugin by name or null.
  - manager.time(seconds) return a talkable time (convert seconds into minutes, hours, etc.)
  - manager.format(msg, args) return adds a format to a message with the specified variable example with %p

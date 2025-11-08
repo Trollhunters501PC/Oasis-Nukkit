@@ -68,7 +68,13 @@ public class PromtIa {
         iaExecutor.shutdown();
     }
     public static void init(){
-        infoForIa += readResourceAsString("/dataIA/GeneralDocJsonAPI.md") + "\n\n" + readResourceAsString("/dataIA/JSEngineNKAPI.md") + "\n\n";
+        infoForIa += readResourceAsString("/dataIA/JSEngineNKAPI.md") + "\n\n" +
+            readResourceAsString("/dataIA/Classdoc.md") + "\n\n" +
+            readResourceAsString("/dataIA/FetchDoc.md") + "\n\n" +
+            readResourceAsString("/dataIA/managerAPI.md") + "\n\n" +
+            readResourceAsString("/dataIA/NnclassLoaderDoc.md") + "\n\n" +
+            readResourceAsString("/dataIA/NukkitJSBasic.md") + "\n\n" +
+            readResourceAsString("/dataIA/ExecuteCode.md") + "\n\n";
         //...
         try{
             configIa = JsonParser.parseString(readResourceAsString("/dataIA/configIA.json")).getAsJsonObject();
